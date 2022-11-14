@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema({
     following:{type:Number},
     created_at:{type:Date},
     updated_at:{type:Date}
-});
+},{versionKey:false});
 
 //exporting model
 module.exports = new mongoose.model("users",UserSchema);

@@ -80,6 +80,23 @@ router.get("/search",async (req,res)=>{
         });
     }
 })
+// Route for getting whole data is sorted manner
+
+router.get("/",async (req,res)=>{
+    try {
+        const data = await User.find().sort({public_repos:-1,public_gists:-1,followers:-1,following:-1});
+        res.status(200).json({
+            data:data
+        });
+    
+    } catch (error) {
+        res.status(400).json({
+            status:"Failed",
+            message:error.message
+        });
+    }
+})
+
 
 
 
