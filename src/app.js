@@ -3,10 +3,11 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const app = express();
 const DBConnection = require("./database/dbConnection");
-const routes = require("./routes");
+const POST = require("./routes/postRequests");
 
 DBConnection(process.env.DB_URL)
 app.listen(8080,()=>{
     console.log(`Server is up at port ${PORT}`);
 })
-app.use(routes);
+app.use(express.json());
+app.use(POST);
