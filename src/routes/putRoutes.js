@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../database/models/Usermodel");
-const Fetcher = require("../Datafetcher");
-const Friend = require("../database/models/Friends");
 
-//DELETE Request for removing user from database
 
-router.delete("/delete/:username",async (req,res)=>{
+// PUT Request for updating existing user
+
+router.put("/update/:username",async (req,res)=>{
     const {username} = req.params;
     try {
         const user = await User.findOne({login:username});
@@ -17,11 +16,11 @@ router.delete("/delete/:username",async (req,res)=>{
             });
             return;
         }
-        const deleteUser = await User.deleteOne({login:username});
-        const deleteMutual = await Friend.deleteOne({username});
+        const updateUser = await User.updateOne({login:username},req.body); 
+        console.log(updateUser);
         res.status(201).json({
             status:"Success",
-            message:"User deleted successfully"
+            message:"User updated successfully"
         });
     } catch (error) {
         res.status(400).json({

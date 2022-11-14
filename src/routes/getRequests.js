@@ -38,7 +38,7 @@ router.get("/friend/:username", async (req, res) => {
   }
 });
 
-//API for searching given user through query params such as username, location or name 
+//API for searching given user through query params such as username, location or id
 
 router.get("/search",async (req,res)=>{
     const {username,location,id} = req.query;
