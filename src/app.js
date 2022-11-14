@@ -4,6 +4,7 @@ const PORT = process.env.PORT;
 const app = express();
 const DBConnection = require("./database/dbConnection");
 const POST = require("./routes/postRequests");
+const GET = require("./routes/getRequests");
 
 DBConnection(process.env.DB_URL)
 app.listen(8080,()=>{
@@ -11,3 +12,4 @@ app.listen(8080,()=>{
 })
 app.use(express.json());
 app.use(POST);
+app.use(GET);
